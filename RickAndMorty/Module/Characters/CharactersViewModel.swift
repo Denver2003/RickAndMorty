@@ -19,6 +19,16 @@ class CharactersViewModel {
     }
     private var page: Int?
     private var charactersService: CharactersService?
+    private var pageInfo: CharactersInfo?
+    private var totalPageCount: Int {
+        pageInfo?.pages ?? 0
+    }
+    private var totalCount: Int {
+        pageInfo?.count ?? 0
+    }
+    private var isFirstPage: Bool {
+        page == nil
+    }
 
     init(router: CharactersRouter) {
         self.router = router
@@ -29,20 +39,37 @@ class CharactersViewModel {
     }
 
     func fetchFirst() {
-        if isLoading {
+        if !canFetch() {
             return
         }
-        page = nil
+        clearPage()
         fetchCharacters()
     }
 
     func fetchNext() {
-        if isLoading {
+        if !canFetch() {
             return
         }
-
-        page = (page ?? 1) + 1
+        increasePage()
         fetchCharacters()
+    }
+
+    private func clearPage() {
+        page = nil
+    }
+
+    private func increasePage() {
+        page = (page ?? 1) + 1
+    }
+
+    private func canFetch() -> Bool {
+        if isLoading {
+            return false
+        }
+        if let page = page, page > totalPageCount {
+            return false
+        }
+        return true
     }
 
     private func fetchCharacters() {
@@ -55,16 +82,21 @@ class CharactersViewModel {
             self.loadingObserver.onNext(false)
             switch result {
             case .success(let newCharacters):
-                self.updateCharacters(newCharacters)
+                self.didGetCharacters(newCharacters)
             case .failure(let error):
                 self.errorObserver.onNext(error)
             }
         }
     }
 
-    private func updateCharacters(_ characters: Characters) {
+    private func didGetCharacters(_ characters: Characters) {
         let newCharacters = characters.results
-        self.characters.append(contentsOf: newCharacters)
+        if isFirstPage {
+            pageInfo = characters.info
+            self.characters = newCharacters
+        } else {
+            self.characters.append(contentsOf: newCharacters)
+        }
         reloadDataObserver.onNext(true)
     }
 }

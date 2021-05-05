@@ -15,6 +15,8 @@
 		5699E32E2641A9B000EDE4D2 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699E32D2641A9B000EDE4D2 /* CharactersViewModel.swift */; };
 		5699E3312641A9C800EDE4D2 /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699E3302641A9C800EDE4D2 /* CharactersRouter.swift */; };
 		5699E33E2641B1D700EDE4D2 /* CharactersAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699E33D2641B1D700EDE4D2 /* CharactersAssembler.swift */; };
+		5699E3492643109D00EDE4D2 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5699E3472643109D00EDE4D2 /* CharacterCell.swift */; };
+		5699E34A2643109D00EDE4D2 /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5699E3482643109D00EDE4D2 /* CharacterCell.xib */; };
 		56E2B76726419870009D96A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E2B76626419870009D96A6 /* AppDelegate.swift */; };
 		56E2B76926419870009D96A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E2B76826419870009D96A6 /* SceneDelegate.swift */; };
 		56E2B77026419871009D96A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56E2B76F26419871009D96A6 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 		5699E32D2641A9B000EDE4D2 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 		5699E3302641A9C800EDE4D2 /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
 		5699E33D2641B1D700EDE4D2 /* CharactersAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersAssembler.swift; sourceTree = "<group>"; };
+		5699E3472643109D00EDE4D2 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		5699E3482643109D00EDE4D2 /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		56E2B76326419870009D96A6 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56E2B76626419870009D96A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56E2B76826419870009D96A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		5699E3242641A84C00EDE4D2 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				5699E3462643107700EDE4D2 /* Cells */,
 				5699E32A2641A8BE00EDE4D2 /* Characters.storyboard */,
 				5699E3262641A8AB00EDE4D2 /* CharactersViewController.swift */,
 				5699E32D2641A9B000EDE4D2 /* CharactersViewModel.swift */,
@@ -98,6 +103,15 @@
 				56E2B76826419870009D96A6 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		5699E3462643107700EDE4D2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5699E3472643109D00EDE4D2 /* CharacterCell.swift */,
+				5699E3482643109D00EDE4D2 /* CharacterCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		56E2B75A26419870009D96A6 = {
@@ -250,6 +264,7 @@
 				5699E32B2641A8BE00EDE4D2 /* Characters.storyboard in Resources */,
 				56E2B77326419871009D96A6 /* LaunchScreen.storyboard in Resources */,
 				56E2B77026419871009D96A6 /* Assets.xcassets in Resources */,
+				5699E34A2643109D00EDE4D2 /* CharacterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5699E3492643109D00EDE4D2 /* CharacterCell.swift in Sources */,
 				56E2B78A26419F0C009D96A6 /* CharacterInfo.swift in Sources */,
 				56E2B79226419F7C009D96A6 /* CharacterProvider.swift in Sources */,
 				56E2B78D26419F16009D96A6 /* Location.swift in Sources */,

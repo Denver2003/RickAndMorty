@@ -27,9 +27,23 @@ class CharactersViewController: UITableViewController {
     }
 
     private func setupUI() {
+        setupTableView()
+        setupRefreshControl()
+    }
+
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = activityView
+    }
+
+    private func setupRefreshControl() {
+        refreshControl?.addTarget(self, action: #selector(refresh(_:)),
+                                  for: .valueChanged)
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+        viewModel?.fetchFirst()
     }
 
     private func subscribeObservers() {
@@ -39,13 +53,17 @@ class CharactersViewController: UITableViewController {
                 : self.activityView.stopAnimating()
         }).disposed(by: disposeBag)
         viewModel?.reloadDataObserver.subscribe(onNext: { [unowned self] _ in
+            self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height )){
+        let offsetY = scrollView.contentOffset.y
+        let frameHeight = scrollView.frame.size.height
+        let contentHeight = scrollView.contentSize.height
 
+        if offsetY + frameHeight > contentHeight {
             viewModel?.fetchNext()
         }
     }
