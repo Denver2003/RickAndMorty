@@ -35,6 +35,12 @@ class CharactersViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = activityView
+        registerCells()
+    }
+
+    private func registerCells() {
+        let characterNib = UINib(nibName: CharacterCell.identifier, bundle: nil)
+        tableView.register(characterNib, forCellReuseIdentifier: CharacterCell.identifier)
     }
 
     private func setupRefreshControl() {
@@ -81,13 +87,21 @@ extension CharactersViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let character = getCharacter(by: indexPath) else {
+        guard let cell = dequeueCharacterCell(for: indexPath) else {
             return UITableViewCell()
         }
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "id")
-        cell.textLabel?.text = character.name
-        cell.detailTextLabel?.text = "\(character.id)"
         return cell
+    }
+
+    private func dequeueCharacterCell(for indexPath: IndexPath) -> CharacterCell? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.identifier, for: indexPath)
+        guard let character = getCharacter(by: indexPath),
+              let characterCell = cell as? CharacterCell else {
+            return nil
+        }
+        let viewModel = CharacterCellViewModel(character: character)
+        characterCell.initWith(viewModel: viewModel)
+        return characterCell
     }
 
     private func getCharacter(by indexPath: IndexPath) -> Character? {

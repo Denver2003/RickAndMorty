@@ -7,13 +7,32 @@
 
 import Foundation
 
+enum Gender: String, Codable {
+    case Female, Male, Genderless, unknown
+}
+
+enum CharacterStatus: String, Codable {
+    case Alive, Dead, unknown
+
+    var colorName: String {
+        switch self {
+        case .Alive:
+            return "alive"
+        case .Dead:
+            return "dead"
+        case .unknown:
+            return "unknown"
+        }
+    }
+}
+
 struct Character: Codable {
     let id: Int
     let name: String
-    let status: String
+    let status: CharacterStatus
     let species: String
     let type: String
-    let gender: String
+    let gender: Gender
     let origin: Location
     let location: Location
     let image: String

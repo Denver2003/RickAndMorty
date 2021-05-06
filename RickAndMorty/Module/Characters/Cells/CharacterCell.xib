@@ -18,13 +18,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IO8-cq-Gdy">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IO8-cq-Gdy">
                         <rect key="frame" x="8" y="4" width="304" height="124"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fw5-8K-A87">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Fw5-8K-A87">
                                 <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Fw5-8K-A87" secondAttribute="height" multiplier="1:1" id="7Ye-Yi-ZOH"/>
+                                    <constraint firstAttribute="height" constant="124" id="kme-Vz-1DI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-fd-0ET">
@@ -109,10 +110,20 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarImageView" destination="Fw5-8K-A87" id="iUh-lN-UbU"/>
+                <outlet property="backView" destination="IO8-cq-Gdy" id="bt2-VE-258"/>
+                <outlet property="lastEpisobeLabel" destination="B4Q-Xq-pQD" id="C0G-BT-erf"/>
+                <outlet property="lastLocationLabel" destination="Umd-2M-Tun" id="dRU-yS-jZ3"/>
+                <outlet property="nameLabel" destination="4zx-fd-0ET" id="XmA-8H-dQj"/>
+                <outlet property="statusLabel" destination="Ddu-d0-s8u" id="jY2-xr-sFI"/>
+                <outlet property="statusView" destination="PbT-OT-FZP" id="SKz-jv-9FG"/>
+            </connections>
             <point key="canvasLocation" x="11.594202898550726" y="77.34375"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="noPhoto" width="430" height="352.5"/>
         <namedColor name="background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
